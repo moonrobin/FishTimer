@@ -4,8 +4,6 @@
 const int buttonPin = 10; 
 const int waterLedPin = 12;
 const int foodLedPin =  11;     
-int foodTimer;
-int waterTimer;
 Timer t;
 
 int buttonState = 0;         
@@ -19,31 +17,33 @@ void setup() {
 }
 
 void loop(){
+  
   buttonState = digitalRead(buttonPin);
   
   if (buttonState == HIGH) {     
     delay(1000);
     buttonState = digitalRead(buttonPin);
+    
     if (buttonState == HIGH) {
       digitalWrite(waterLedPin, LOW);
       delay(1000);
-      t.after(86400000, foodOn);
+      t.after(604800000, waterOn);
     }
+    
     else {
       digitalWrite(foodLedPin, LOW);
-      t.after(604800000, waterOn);
+      t.after(86400000, foodOn);
     } 
   }
-  
   t.update();
 }
 
 void foodOn(){
-  digitalWrite(waterLedPin, HIGH);
+  digitalWrite(foodLedPin, HIGH);
 }
 
 void waterOn(){
-  digitalWrite(foodLedPin, HIGH);
+  digitalWrite(waterLedPin, HIGH);
 }
 
 
