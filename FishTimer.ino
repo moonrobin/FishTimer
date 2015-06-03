@@ -32,7 +32,7 @@ void loop(){
     
     else {
       digitalWrite(foodLedPin, LOW);
-      t.after(86400000, foodOn);
+      t.after(72000000, foodOn);
     } 
   }
   t.update();
